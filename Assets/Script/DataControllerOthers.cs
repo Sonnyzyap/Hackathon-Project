@@ -27,7 +27,7 @@ public class DataControllerOthers : MonoBehaviour
     string url_wq_others = "https://docs.google.com/spreadsheets/d/10nx4vfJyCYENE46bAYJQybzY0Ogyjvmi_buAM4pbHhU/gviz/tq?tqx=out:csv&sheet=water_quality_others";
 
     // Google Apps ScriptのWebアプリURL
-    string gasUrl = "https://script.google.com/macros/s/AKfycbwekuIf9FR2Phpw7bsBQUiVW3VwiPP-7AnLJEOFQJy6UUDxXrPkCa_XJ_4n5eeycrJnLg/exec";
+    string gasUrl = "https://script.google.com/macros/s/AKfycbwG7tSZH_zFHFGPAtRhc--9Gt54CsnSvcp7OVXIB93mrrwH-Vr0WV2eYB33a_MkXHam_w/exec";
 
     List<string> datas = new List<string>();
 

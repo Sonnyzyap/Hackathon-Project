@@ -13,27 +13,21 @@ using JetBrains.Annotations;
 public class WaterQualityEveryday
 {
     public string TANK; // 水槽
-    public string PH, DO, TEMP, SAL; // 毎日測定するデータ
-}
-
-public class WaterQualityOthers
-{
-    public string SERIES; // 系
-    public string NH4, NO2, NO3; // 1週間に1回ほど測定するデータ
+    public string PH, DO, TEMP, SAL, COMMENT; // 毎日測定するデータ
 }
 
 public class DataController : MonoBehaviour
 {
     [SerializeField] TMPro.TMP_Text viewText;
     [SerializeField] Button dataButton;
-    [SerializeField] TMP_InputField tankField, phField, doField, tempField, salField;
+    [SerializeField] TMP_InputField tankField, phField, doField, tempField, salField, commentField;
 
     // スプレッドシートの読み取りURL
     string url_wq_everyday = "https://docs.google.com/spreadsheets/d/10nx4vfJyCYENE46bAYJQybzY0Ogyjvmi_buAM4pbHhU/gviz/tq?tqx=out:csv&sheet=water_quality_everyday";
-    string url_wq_others = "https://docs.google.com/spreadsheets/d/10nx4vfJyCYENE46bAYJQybzY0Ogyjvmi_buAM4pbHhU/gviz/tq?tqx=out:csv&sheet=water_quality_others";
+    //string url_wq_others = "https://docs.google.com/spreadsheets/d/10nx4vfJyCYENE46bAYJQybzY0Ogyjvmi_buAM4pbHhU/gviz/tq?tqx=out:csv&sheet=water_quality_others";
 
     // Google Apps ScriptのWebアプリURL
-    string gasUrl = "https://script.google.com/macros/s/AKfycbwekuIf9FR2Phpw7bsBQUiVW3VwiPP-7AnLJEOFQJy6UUDxXrPkCa_XJ_4n5eeycrJnLg/exec";
+    string gasUrl = "https://script.google.com/macros/s/AKfycbwG7tSZH_zFHFGPAtRhc--9Gt54CsnSvcp7OVXIB93mrrwH-Vr0WV2eYB33a_MkXHam_w/exec";
 
     List<string> datas = new List<string>();
 
@@ -107,6 +101,7 @@ public class DataController : MonoBehaviour
         string doText = doField.text;
         string tempText = tempField.text;
         string salText = salField.text;
+        string comText = commentField.text;
 
         // 値が空の場合は処理を中断
         if (string.IsNullOrEmpty(phText) || string.IsNullOrEmpty(doText) || string.IsNullOrEmpty(tempText) || string.IsNullOrEmpty(salText))
@@ -122,6 +117,7 @@ public class DataController : MonoBehaviour
             DO = doText,
             TEMP = tempText,
             SAL = salText,
+            COMMENT = comText,
         };
 
         // クラスをJSON形式に変換
@@ -163,5 +159,6 @@ public class DataController : MonoBehaviour
         doField.text = "";
         tempField.text = "";
         salField.text = "";
+        commentField.text = "";
     }
 }
