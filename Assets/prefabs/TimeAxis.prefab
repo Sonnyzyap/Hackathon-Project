@@ -691,7 +691,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Option A
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e8febcdff8ced6f45842abce45746075, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1a492c42dcda4ab4292cb643ce6f169a, type: 2}
   m_sharedMaterial: {fileID: -1977804584179354513, guid: e8febcdff8ced6f45842abce45746075, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -755,7 +755,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &5116731955603687383
@@ -975,8 +975,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u9031"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e8febcdff8ced6f45842abce45746075, type: 2}
-  m_sharedMaterial: {fileID: -1977804584179354513, guid: e8febcdff8ced6f45842abce45746075, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1a492c42dcda4ab4292cb643ce6f169a, type: 2}
+  m_sharedMaterial: {fileID: -367143553052290960, guid: 1a492c42dcda4ab4292cb643ce6f169a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
