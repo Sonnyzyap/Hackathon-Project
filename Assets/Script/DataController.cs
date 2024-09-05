@@ -18,16 +18,16 @@ public class WaterQualityEveryday
 
 public class DataController : MonoBehaviour
 {
-    [SerializeField] TMPro.TMP_Text viewText;
+    [SerializeField] TMPro.TMP_Text tankText;
     [SerializeField] Button dataButton;
-    [SerializeField] TMP_InputField tankField, phField, doField, tempField, salField, commentField;
+    [SerializeField] TMP_InputField phField, doField, tempField, salField, commentField;
 
     // スプレッドシートの読み取りURL
     string url_wq_everyday = "https://docs.google.com/spreadsheets/d/10nx4vfJyCYENE46bAYJQybzY0Ogyjvmi_buAM4pbHhU/gviz/tq?tqx=out:csv&sheet=water_quality_everyday";
     //string url_wq_others = "https://docs.google.com/spreadsheets/d/10nx4vfJyCYENE46bAYJQybzY0Ogyjvmi_buAM4pbHhU/gviz/tq?tqx=out:csv&sheet=water_quality_others";
 
     // Google Apps ScriptのWebアプリURL
-    string gasUrl = "https://script.google.com/macros/s/AKfycbwG7tSZH_zFHFGPAtRhc--9Gt54CsnSvcp7OVXIB93mrrwH-Vr0WV2eYB33a_MkXHam_w/exec";
+    string gasUrl = "https://script.google.com/macros/s/AKfycbwXdMVlrzNtsmroCpeSatMHKFhShjlCNJmQUp7dGftKMJFZktH9h8AsEiKuxWQRMTBINA/exec";
 
     List<string> datas = new List<string>();
 
@@ -49,7 +49,7 @@ public class DataController : MonoBehaviour
             if (IsWebRequestSuccessful(req))
             {
                 ParseData(req.downloadHandler.text);
-                DisplayText();
+                //DisplayText();
             }
             else
             {
@@ -77,13 +77,13 @@ public class DataController : MonoBehaviour
     }
 
     // データを表示する関数
-    void DisplayText()
-    {
-        foreach (string data in datas)
-        {
-            viewText.text += data + "\n";
-        }
-    }
+    //void DisplayText()
+    //{
+    //    foreach (string data in datas)
+    //    {
+    //        viewText.text += data + "\n";
+    //    }
+    //}
 
     // リクエストが成功したかどうかを判定する関数
     bool IsWebRequestSuccessful(UnityWebRequest req)
@@ -96,7 +96,8 @@ public class DataController : MonoBehaviour
     IEnumerator PostData()
     {
         // 入力フィールドから情報を取得
-        string tankText = tankField.text;
+        //string tankText = tankField.text;
+        string tText = tankText.text;
         string phText = phField.text;
         string doText = doField.text;
         string tempText = tempField.text;
@@ -112,7 +113,7 @@ public class DataController : MonoBehaviour
 
         var wq = new WaterQualityEveryday()
         {
-            TANK = tankText,
+            TANK = tText,
             PH = phText,
             DO = doText,
             TEMP = tempText,
@@ -154,7 +155,7 @@ public class DataController : MonoBehaviour
     // 入力フィールドを空にする関数
     void ResetInputFields()
     {
-        tankField.text = "";
+        //tankField.text = "";
         phField.text = "";
         doField.text = "";
         tempField.text = "";
