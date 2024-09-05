@@ -15,8 +15,8 @@ public class WaterQualityData
 {
     public ParameterRange pH;
     public ParameterRange DO;
-    public ParameterRange 温度;
-    public ParameterRange 塩分;
+    public ParameterRange temperature;
+    public ParameterRange salinity;
     public ParameterRange NH4;
     public ParameterRange NO2;
     public ParameterRange NO3;
@@ -27,7 +27,7 @@ public class WaterQualityData
 
 public class DataControllerReferenceValues : MonoBehaviour
 {
-    public float updateInterval = 10.0f; // データ更新の間隔（秒）
+    public float updateInterval = 10000.0f; // データ更新の間隔（秒）
 
     void Start()
     {
