@@ -43,7 +43,7 @@ namespace n_Calendar
         // Start is called before the first frame update
         void Start()
         {
-
+            ChangeToday();           //ゲーム開始時、カレンダー内で今日を表示する
         }
 
         // Update is called once per frame
@@ -183,7 +183,7 @@ namespace n_Calendar
             for (int i = 0; i < 42; i++)
             {
                 Color t_LetterColor = Color.black;
-                Color t_BackgronndColor = Color.white;
+                Color t_BackgronndColor = Color.yellow;
 
                 if ((t_Date >= t_FirstDate)
                  && (t_Date <= t_LastDate))
