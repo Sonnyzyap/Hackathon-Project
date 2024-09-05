@@ -23,26 +23,45 @@ public class DataController : MonoBehaviour
     [SerializeField] TMP_InputField phField, doField, tempField, salField, commentField;
 
     // スプレッドシートの読み取りURL
-    string url_wq_everyday = "https://docs.google.com/spreadsheets/d/10nx4vfJyCYENE46bAYJQybzY0Ogyjvmi_buAM4pbHhU/gviz/tq?tqx=out:csv&sheet=water_quality_everyday";
+    //string url_wq_everyday = "https://docs.google.com/spreadsheets/d/10nx4vfJyCYENE46bAYJQybzY0Ogyjvmi_buAM4pbHhU/gviz/tq?tqx=out:csv&sheet=water_quality_everyday";
+    string url_reference_values = "https://docs.google.com/spreadsheets/d/10nx4vfJyCYENE46bAYJQybzY0Ogyjvmi_buAM4pbHhU/gviz/tq?tqx=out:csv&sheet=基準値";
     //string url_wq_others = "https://docs.google.com/spreadsheets/d/10nx4vfJyCYENE46bAYJQybzY0Ogyjvmi_buAM4pbHhU/gviz/tq?tqx=out:csv&sheet=water_quality_others";
 
     // Google Apps ScriptのWebアプリURL
-    string gasUrl = "https://script.google.com/macros/s/AKfycbwXdMVlrzNtsmroCpeSatMHKFhShjlCNJmQUp7dGftKMJFZktH9h8AsEiKuxWQRMTBINA/exec";
+    string gasUrl = "https://script.google.com/macros/s/AKfycbwZVZ0YuNiKnOCG_Yy_FSHz_e9FCKu9lxRXxgRYMejq4Mf4rRUgkQ0i3Rr4A3GOFAZD0Q/exec";
 
     List<string> datas = new List<string>();
 
     void Start()
     {
-        StartCoroutine(GetData_wq_everyday());
+        StartCoroutine(GetData_reference_values());
 
         // ボタンクリック時の挙動
         dataButton.onClick.AddListener(() => StartCoroutine(PostData()));
     }
 
     // スプレッドシートからデータを取得する関数
-    IEnumerator GetData_wq_everyday()
+    //IEnumerator GetData_wq_everyday()
+    //{
+    //    using (UnityWebRequest req = UnityWebRequest.Get(url_wq_everyday))
+    //    {
+    //        yield return req.SendWebRequest();
+
+    //        if (IsWebRequestSuccessful(req))
+    //        {
+    //            ParseData(req.downloadHandler.text);
+    //            //DisplayText();
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("error");
+    //        }
+    //    }
+    //}
+
+    IEnumerator GetData_reference_values()
     {
-        using (UnityWebRequest req = UnityWebRequest.Get(url_wq_everyday))
+        using (UnityWebRequest req = UnityWebRequest.Get(url_reference_values))
         {
             yield return req.SendWebRequest();
 
@@ -149,7 +168,7 @@ public class DataController : MonoBehaviour
         ResetInputFields();
 
         // スプレッドシートから情報を再取得
-        StartCoroutine(GetData_wq_everyday());
+        StartCoroutine(GetData_reference_values());
     }
 
     // 入力フィールドを空にする関数
