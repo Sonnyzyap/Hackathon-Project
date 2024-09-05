@@ -5,7 +5,7 @@ using System.Collections;
 
 public class ImageDownloader : MonoBehaviour
 {
-    public string imageUrl = "YOUR_IMAGE_URL";  // Googleドライブの画像URL
+    public string imageUrl = "https://docs.google.com/document/d/1U8C6cm-nSAxLSRyO2Y17r7HYU5_ptAtu/edit";  // Googleドライブの画像URL
     public RawImage rawImage;  // ダウンロードした画像を表示するUI
 
     void Start()
