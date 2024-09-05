@@ -7,7 +7,7 @@ using System.Collections;
 public class CSVDataDisplay : MonoBehaviour
 {
     public Canvas canvas;  // CanvasをInspectorで設定
-    public string url = "https://example.com/yourfile.csv";  // CSVファイルのURL
+    public string url = "https://docs.google.com/spreadsheets/d/1xi7ljCNvzy9lssvxFl43BmZy3IQ42Vd0UMBS1UkNECs/edit?usp=sharing";  // CSVファイルのURL
 
     void Start()
     {
@@ -73,7 +73,7 @@ public class CSVDataDisplay : MonoBehaviour
                 textObject.transform.SetParent(background.transform);
                 Text text = textObject.AddComponent<Text>();
                 text.text = data[row][col];
-                text.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+                text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
                 text.fontSize = 24;
                 text.alignment = TextAnchor.MiddleCenter;
                 text.color = Color.black;

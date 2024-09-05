@@ -4408,7 +4408,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -160, y: 356}
+  m_AnchoredPosition: {x: -643, y: 456}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1293805052
@@ -4423,6 +4423,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5fe57be67fc7694980008bfbe4673f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  imageUrl: cat_wet_hachiware (1).png
+  rawImage: {fileID: 0}
 --- !u!114 &1293805053
 MonoBehaviour:
   m_ObjectHideFlags: 0
