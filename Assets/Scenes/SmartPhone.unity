@@ -39576,6 +39576,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2131802245}
   - component: {fileID: 2131802244}
+  - component: {fileID: 2131802246}
   m_Layer: 0
   m_Name: DataController
   m_TagString: Untagged
@@ -39617,6 +39618,25 @@ Transform:
   m_Father: {fileID: 1361497504}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2131802246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131802243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceceeabc0b7904a48ae359e2d1357d7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tankText: {fileID: 448075417}
+  dataButton: {fileID: 2023353305}
+  phField: {fileID: 1395692036}
+  doField: {fileID: 769875403}
+  tempField: {fileID: 561190945}
+  salField: {fileID: 1931602}
+  commentField: {fileID: 216378076}
 --- !u!1 &2139335072
 GameObject:
   m_ObjectHideFlags: 0
