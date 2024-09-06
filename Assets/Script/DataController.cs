@@ -22,11 +22,6 @@ public class DataController : MonoBehaviour
     [SerializeField] Button dataButton;
     [SerializeField] TMP_InputField phField, doField, tempField, salField, commentField;
 
-    // スプレッドシートの読み取りURL
-    //string url_wq_everyday = "https://docs.google.com/spreadsheets/d/10nx4vfJyCYENE46bAYJQybzY0Ogyjvmi_buAM4pbHhU/gviz/tq?tqx=out:csv&sheet=water_quality_everyday";
-    string url_reference_values = "https://docs.google.com/spreadsheets/d/10nx4vfJyCYENE46bAYJQybzY0Ogyjvmi_buAM4pbHhU/gviz/tq?tqx=out:csv&sheet=基準値";
-    //string url_wq_others = "https://docs.google.com/spreadsheets/d/10nx4vfJyCYENE46bAYJQybzY0Ogyjvmi_buAM4pbHhU/gviz/tq?tqx=out:csv&sheet=water_quality_others";
-
     // Google Apps ScriptのWebアプリURL
     string gasUrl = "https://script.google.com/macros/s/AKfycbwZVZ0YuNiKnOCG_Yy_FSHz_e9FCKu9lxRXxgRYMejq4Mf4rRUgkQ0i3Rr4A3GOFAZD0Q/exec";
 
@@ -34,75 +29,9 @@ public class DataController : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(GetData_reference_values());
-
         // ボタンクリック時の挙動
         dataButton.onClick.AddListener(() => StartCoroutine(PostData()));
     }
-
-    // スプレッドシートからデータを取得する関数
-    //IEnumerator GetData_wq_everyday()
-    //{
-    //    using (UnityWebRequest req = UnityWebRequest.Get(url_wq_everyday))
-    //    {
-    //        yield return req.SendWebRequest();
-
-    //        if (IsWebRequestSuccessful(req))
-    //        {
-    //            ParseData(req.downloadHandler.text);
-    //            //DisplayText();
-    //        }
-    //        else
-    //        {
-    //            Debug.Log("error");
-    //        }
-    //    }
-    //}
-
-    IEnumerator GetData_reference_values()
-    {
-        using (UnityWebRequest req = UnityWebRequest.Get(url_reference_values))
-        {
-            yield return req.SendWebRequest();
-
-            if (IsWebRequestSuccessful(req))
-            {
-                ParseData(req.downloadHandler.text);
-                //DisplayText();
-            }
-            else
-            {
-                Debug.Log("error");
-            }
-        }
-    }
-
-    // データを整形する関数
-    void ParseData(string csvData)
-    {
-        string[] rows = csvData.Split(new[] { "\n" }, System.StringSplitOptions.RemoveEmptyEntries);
-        foreach (string row in rows)
-        {
-            string[] cells = row.Split(new[] { ',' }, System.StringSplitOptions.RemoveEmptyEntries);
-            foreach (string cell in cells)
-            {
-                string trimCell = cell.Trim('"');
-                if (!string.IsNullOrEmpty(trimCell))
-                {
-                    datas.Add(trimCell);
-                }
-            }
-        }
-    }
-
-    // データを表示する関数
-    //void DisplayText()
-    //{
-    //    foreach (string data in datas)
-    //    {
-    //        viewText.text += data + "\n";
-    //    }
-    //}
 
     // リクエストが成功したかどうかを判定する関数
     bool IsWebRequestSuccessful(UnityWebRequest req)
@@ -166,9 +95,6 @@ public class DataController : MonoBehaviour
 
         // 入力フィールドのリセット
         ResetInputFields();
-
-        // スプレッドシートから情報を再取得
-        StartCoroutine(GetData_reference_values());
     }
 
     // 入力フィールドを空にする関数
