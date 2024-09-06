@@ -27,7 +27,7 @@ public class WaterQualityData
 
 public class DataControllerReferenceValues : MonoBehaviour
 {
-    public float updateInterval = 10000.0f; // データ更新の間隔（秒）
+    public float updateInterval = 10.0f; // データ更新の間隔（秒）
 
     void Start()
     {

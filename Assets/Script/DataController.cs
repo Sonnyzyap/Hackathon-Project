@@ -25,7 +25,7 @@ public class DataController : MonoBehaviour
     [SerializeField] TMP_InputField phField, doField, tempField, salField, commentField;
 
     // Google Apps ScriptのWebアプリURL
-    private string gasUrl = "https://script.google.com/macros/s/AKfycbwZVZ0YuNiKnOCG_Yy_FSHz_e9FCKu9lxRXxgRYMejq4Mf4rRUgkQ0i3Rr4A3GOFAZD0Q/exec";
+    private string gasUrl = "https://script.google.com/macros/s/AKfycbyMkjezMZJP1qEVN36MaSdZrDQOIEVPzsmeXJD83fsILd33SM6wNZbteWpsSKWlXzw_oQ/exec";
 
     List<string> datas = new List<string>();
 

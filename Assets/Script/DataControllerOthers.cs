@@ -27,7 +27,7 @@ public class DataControllerOthers : MonoBehaviour
     // スプレッドシートの読み取りURL
 
     // Google Apps ScriptのWebアプリURL
-    private string gasUrl = "https://script.google.com/macros/s/AKfycbwG7tSZH_zFHFGPAtRhc--9Gt54CsnSvcp7OVXIB93mrrwH-Vr0WV2eYB33a_MkXHam_w/exec";
+    private string gasUrl = "https://script.google.com/macros/s/AKfycbyMkjezMZJP1qEVN36MaSdZrDQOIEVPzsmeXJD83fsILd33SM6wNZbteWpsSKWlXzw_oQ/exec";
 
     List<string> datas = new List<string>();
 

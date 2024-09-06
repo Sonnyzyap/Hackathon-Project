@@ -34567,6 +34567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1859043021}
   - component: {fileID: 1859043022}
+  - component: {fileID: 1859043023}
   m_Layer: 5
   m_Name: DataController
   m_TagString: Untagged
@@ -34606,12 +34607,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ffbdbda6ed60041a2156115234c6bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1859043023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859043020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 666840e2725eadd48b8c605a370ab879, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   tankText: {fileID: 563000517}
   dataButton: {fileID: 23835218}
   phField: {fileID: 679980439}
   doField: {fileID: 1867902903}
   tempField: {fileID: 581472699}
   salField: {fileID: 873175416}
+  nh4Field: {fileID: 0}
+  no2Field: {fileID: 0}
+  no3Field: {fileID: 0}
   commentField: {fileID: 1416167635}
 --- !u!1 &1861640026
 GameObject:
@@ -38119,6 +38135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2078232371}
   - component: {fileID: 2078232372}
+  - component: {fileID: 2078232373}
   m_Layer: 5
   m_Name: DataController
   m_TagString: Untagged
@@ -38156,6 +38173,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9ffbdbda6ed60041a2156115234c6bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2078232373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078232370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceceeabc0b7904a48ae359e2d1357d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tankText: {fileID: 1661638911}
@@ -39596,13 +39625,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ffbdbda6ed60041a2156115234c6bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tankText: {fileID: 448075417}
-  dataButton: {fileID: 2023353305}
-  phField: {fileID: 1395692036}
-  doField: {fileID: 769875403}
-  tempField: {fileID: 561190945}
-  salField: {fileID: 1931602}
-  commentField: {fileID: 216378076}
 --- !u!4 &2131802245
 Transform:
   m_ObjectHideFlags: 0
