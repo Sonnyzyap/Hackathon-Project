@@ -10,22 +10,17 @@ using TMPro;
 using JetBrains.Annotations;
 
 
-public class WaterQualityEveryday
+public class graphType
 {
-    public string TANK; // 水槽
-    public string PH, DO, TEMP, SAL, COMMENT; // 毎日測定するデータ
+    public string type, yearClass, monthClass, dayClass, timeLineClass, gTypeClass; // 毎日測定するデータ
 }
 
 public class SendGraphData : MonoBehaviour
 {
-    [SerializeField] TMPro.TMP_Text tankText;
-    [SerializeField] Button dataButton;
-    [SerializeField] TMP_InputField phField, doField, tempField, salField, commentField;
+    [SerializeField] TMPro.TMP_Text year, month, day, timeLine, graphType;
+    [SerializeField] Button rightButton;
 
     // スプレッドシートの読み取りURL
-    //string url_wq_everyday = "https://docs.google.com/spreadsheets/d/10nx4vfJyCYENE46bAYJQybzY0Ogyjvmi_buAM4pbHhU/gviz/tq?tqx=out:csv&sheet=water_quality_everyday";
-    string url_reference_values = "https://docs.google.com/spreadsheets/d/10nx4vfJyCYENE46bAYJQybzY0Ogyjvmi_buAM4pbHhU/gviz/tq?tqx=out:csv&sheet=基準値";
-    //string url_wq_others = "https://docs.google.com/spreadsheets/d/10nx4vfJyCYENE46bAYJQybzY0Ogyjvmi_buAM4pbHhU/gviz/tq?tqx=out:csv&sheet=water_quality_others";
 
     // Google Apps ScriptのWebアプリURL
     string gasUrl = "https://script.google.com/macros/s/AKfycbwZVZ0YuNiKnOCG_Yy_FSHz_e9FCKu9lxRXxgRYMejq4Mf4rRUgkQ0i3Rr4A3GOFAZD0Q/exec";
@@ -35,9 +30,12 @@ public class SendGraphData : MonoBehaviour
     void Start()
     {
         StartCoroutine(PostGraphData());
+        year.text = System.DateTime.Now.Year.ToString();
+        month.text = System.DateTime.Now.Month.ToString();
+        day.text = System.DateTime.Now.Day.ToString();
 
         // ボタンクリック時の挙動
-        dataButton.onClick.AddListener(() => StartCoroutine(PostData()));
+        rightButton.onClick.AddListener(() => StartCoroutine(PostGraphData()));
     }
 
     // スプレッドシートからデータを取得する関数
@@ -116,28 +114,27 @@ public class SendGraphData : MonoBehaviour
     {
         // 入力フィールドから情報を取得
         //string tankText = tankField.text;
-        string tText = tankText.text;
-        string phText = phField.text;
-        string doText = doField.text;
-        string tempText = tempField.text;
-        string salText = salField.text;
-        string comText = commentField.text;
+        string yText = year.text;
+        string mText = month.text;
+        string dText = day.text;
+        string tlText = timeLine.text;
+        string gtText = graphType.text;
 
         // 値が空の場合は処理を中断
-        if (string.IsNullOrEmpty(phText) || string.IsNullOrEmpty(doText) || string.IsNullOrEmpty(tempText) || string.IsNullOrEmpty(salText))
+        if (string.IsNullOrEmpty(dText) || string.IsNullOrEmpty(tlText) || string.IsNullOrEmpty(gtText))
         {
             Debug.Log("empty!");
             yield break;
         }
 
-        var wq = new WaterQualityEveryday()
+        var wq = new graphType()
         {
-            TANK = tText,
-            PH = phText,
-            DO = doText,
-            TEMP = tempText,
-            SAL = salText,
-            COMMENT = comText,
+            type = "type3",
+            yearClass = yText,
+            monthClass = mText,
+            dayClass = dText,
+            timeLineClass = tlText,
+            gTypeClass = gtText,
         };
 
         // クラスをJSON形式に変換
@@ -172,10 +169,10 @@ public class SendGraphData : MonoBehaviour
     void ResetInputFields()
     {
         //tankField.text = "";
-        phField.text = "";
-        doField.text = "";
-        tempField.text = "";
-        salField.text = "";
-        commentField.text = "";
+        year.text = "";
+        month.text = "";
+        day.text = "";
+        timeLine.text = "";
+        graphType.text = "";
     }
 }
