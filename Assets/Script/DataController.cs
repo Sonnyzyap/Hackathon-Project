@@ -10,8 +10,10 @@ using TMPro;
 using JetBrains.Annotations;
 
 
+// 水槽の水質データを記録
 public class WaterQualityEveryday
 {
+    public string type; // Jsonの種類
     public string TANK; // 水槽
     public string PH, DO, TEMP, SAL, COMMENT; // 毎日測定するデータ
 }
@@ -23,7 +25,7 @@ public class DataController : MonoBehaviour
     [SerializeField] TMP_InputField phField, doField, tempField, salField, commentField;
 
     // Google Apps ScriptのWebアプリURL
-    string gasUrl = "https://script.google.com/macros/s/AKfycbwZVZ0YuNiKnOCG_Yy_FSHz_e9FCKu9lxRXxgRYMejq4Mf4rRUgkQ0i3Rr4A3GOFAZD0Q/exec";
+    private string gasUrl = "https://script.google.com/macros/s/AKfycbwZVZ0YuNiKnOCG_Yy_FSHz_e9FCKu9lxRXxgRYMejq4Mf4rRUgkQ0i3Rr4A3GOFAZD0Q/exec";
 
     List<string> datas = new List<string>();
 
@@ -61,6 +63,7 @@ public class DataController : MonoBehaviour
 
         var wq = new WaterQualityEveryday()
         {
+            type = "type1",
             TANK = tText,
             PH = phText,
             DO = doText,

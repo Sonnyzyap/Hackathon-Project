@@ -10,79 +10,31 @@ using TMPro;
 using JetBrains.Annotations;
 
 
+// 硝化槽の水質データを記録
 public class WaterQualityOthers
 {
-    public string SERIES; // 系
-    public string NH4, NO2, NO3; // 1週間に1回ほど測定するデータ
+    public string type; // jsonの種類
+    public string TANK; // 硝化槽
+    public string PH, DO, TEMP, SAL, NH4, NO2, NO3, COMMENT; // 1週間に1回ほど測定するデータ
 }
 
 public class DataControllerOthers : MonoBehaviour
 {
-    [SerializeField] TMPro.TMP_Text viewText;
+    [SerializeField] TMPro.TMP_Text tankText;
     [SerializeField] Button dataButton;
-    [SerializeField] TMP_InputField seriesField, nh4Field, no2Field, no3Field;
+    [SerializeField] TMP_InputField phField, doField, tempField, salField, nh4Field, no2Field, no3Field, commentField;
 
     // スプレッドシートの読み取りURL
-    // url_wq_everyday = "https://docs.google.com/spreadsheets/d/10nx4vfJyCYENE46bAYJQybzY0Ogyjvmi_buAM4pbHhU/gviz/tq?tqx=out:csv&sheet=water_quality_everyday";
-    string url_wq_others = "https://docs.google.com/spreadsheets/d/10nx4vfJyCYENE46bAYJQybzY0Ogyjvmi_buAM4pbHhU/gviz/tq?tqx=out:csv&sheet=water_quality_others";
 
     // Google Apps ScriptのWebアプリURL
-    string gasUrl = "https://script.google.com/macros/s/AKfycbwG7tSZH_zFHFGPAtRhc--9Gt54CsnSvcp7OVXIB93mrrwH-Vr0WV2eYB33a_MkXHam_w/exec";
+    private string gasUrl = "https://script.google.com/macros/s/AKfycbwG7tSZH_zFHFGPAtRhc--9Gt54CsnSvcp7OVXIB93mrrwH-Vr0WV2eYB33a_MkXHam_w/exec";
 
     List<string> datas = new List<string>();
 
     void Start()
     {
-        StartCoroutine(GetData_wq_everyday());
-
         // ボタンクリック時の挙動
         dataButton.onClick.AddListener(() => StartCoroutine(PostData()));
-    }
-
-    // スプレッドシートからデータを取得する関数
-    IEnumerator GetData_wq_everyday()
-    {
-        using (UnityWebRequest req = UnityWebRequest.Get(url_wq_others))
-        {
-            yield return req.SendWebRequest();
-
-            if (IsWebRequestSuccessful(req))
-            {
-                ParseData(req.downloadHandler.text);
-                DisplayText();
-            }
-            else
-            {
-                Debug.Log("error");
-            }
-        }
-    }
-
-    // データを整形する関数
-    void ParseData(string csvData)
-    {
-        string[] rows = csvData.Split(new[] { "\n" }, System.StringSplitOptions.RemoveEmptyEntries);
-        foreach (string row in rows)
-        {
-            string[] cells = row.Split(new[] { ',' }, System.StringSplitOptions.RemoveEmptyEntries);
-            foreach (string cell in cells)
-            {
-                string trimCell = cell.Trim('"');
-                if (!string.IsNullOrEmpty(trimCell))
-                {
-                    datas.Add(trimCell);
-                }
-            }
-        }
-    }
-
-    // データを表示する関数
-    void DisplayText()
-    {
-        foreach (string data in datas)
-        {
-            viewText.text += data + "\n";
-        }
     }
 
     // リクエストが成功したかどうかを判定する関数
@@ -96,13 +48,18 @@ public class DataControllerOthers : MonoBehaviour
     IEnumerator PostData()
     {
         // 入力フィールドから情報を取得
-        string seriesText = seriesField.text;
+        string tText = tankText.text;
+        string phText = phField.text;
+        string doText = doField.text;
+        string tempText = tempField.text;
+        string salText = salField.text;
         string nh4Text = nh4Field.text;
         string no2Text = no2Field.text;
         string no3Text = no3Field.text;
+        string comText = commentField.text;
 
         // 値が空の場合は処理を中断
-        if (string.IsNullOrEmpty(seriesText) || string.IsNullOrEmpty(nh4Text) || string.IsNullOrEmpty(no2Text) || string.IsNullOrEmpty(no3Text))
+        if (string.IsNullOrEmpty(phText) || string.IsNullOrEmpty(doText) || string.IsNullOrEmpty(tempText) || string.IsNullOrEmpty(salText))
         {
             Debug.Log("empty!");
             yield break;
@@ -110,10 +67,16 @@ public class DataControllerOthers : MonoBehaviour
 
         var wq = new WaterQualityOthers()
         {
-            SERIES = seriesText,
+            type = "type2",
+            TANK = tText,
+            PH = phText,
+            DO = doText,
+            TEMP = tempText,
+            SAL = salText,
             NH4 = nh4Text,
             NO2 = no2Text,
             NO3 = no3Text,
+            COMMENT = comText,
         };
 
         // クラスをJSON形式に変換
@@ -142,17 +105,18 @@ public class DataControllerOthers : MonoBehaviour
 
         // 入力フィールドのリセット
         ResetInputFields();
-
-        // スプレッドシートから情報を再取得
-        StartCoroutine(GetData_wq_everyday());
     }
 
     // 入力フィールドを空にする関数
     void ResetInputFields()
     {
-        seriesField.text = "";
+        phField.text = "";
+        doField.text = "";
+        tempField.text = "";
+        salField.text = "";
         nh4Field.text = "";
         no2Field.text = "";
         no3Field.text = "";
+        commentField.text = "";
     }
 }
