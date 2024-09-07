@@ -92,7 +92,7 @@ public class ToggleButtonColor : MonoBehaviour
         {
             if (PlayerPrefs.GetInt(key) == 1)
             {
-                Debug.Log("Button pressed: " + key.Replace("ButtonPressedState_", ""));
+                Debug.Log(key.Replace("ButtonPressedState_", ""));
             }
         }
 

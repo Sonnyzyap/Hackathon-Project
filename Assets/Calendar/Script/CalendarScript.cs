@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;        //DirectoryInfo
-
 using UnityEngine.UI;
 using System;
 
@@ -58,10 +57,13 @@ namespace n_Calendar
 
         //========================== イベント関数 =============================
         //日付選択
-        public void OnClickButton(string a_Num)
+        private void OnClickButton(string a_Num)
         {
             DateTime t_SelectDate = pv_DispFirstDay.AddDays(int.Parse(a_Num));  //選択した日付
             pv_WriteText.text = t_SelectDate.ToString(pv_FormatDate);
+
+            // コンソールに選択された日付を表示
+            Debug.Log("選択した日付: " + t_SelectDate.ToString(pv_FormatDate));
 
             DestroyImmediate(this.gameObject, true);
         }
@@ -119,8 +121,8 @@ namespace n_Calendar
                 t_GameObj.name = i.ToString();
 
                 //ボタンクリック時のcallする関数を登録する
-                Button t_Button = t_GameObj.GetComponent<Button>();
-                t_Button.onClick.AddListener(() => OnClickButton(t_GameObj.name));
+                //Button t_Button = t_GameObj.GetComponent<Button>();
+                //t_Button.onClick.AddListener(() => OnClickButton(t_GameObj.name));
             }
         }
 
@@ -254,5 +256,3 @@ namespace n_Calendar
         }
     }
 }
-
-
