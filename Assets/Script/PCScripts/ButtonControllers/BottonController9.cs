@@ -19,7 +19,7 @@ public class BottonController9 : MonoBehaviour
     void Awake()
     {
         button = GetComponent<Button>();
-
+        imageURLobj url = new imageURLobj();
         if (button == null)
         {
             Debug.LogError("ToggleButtonColorスクリプトはButtonコンポーネントと一緒に使用する必要があります。");
@@ -48,9 +48,9 @@ public class BottonController9 : MonoBehaviour
         }
 
         // 追加: 画像をURLからロードしてボタンに設定
-        if (!string.IsNullOrEmpty(imageUrl))
+        if (!string.IsNullOrEmpty(url.url31PH))
         {
-            StartCoroutine(LoadImageFromUrl(imageUrl));
+            StartCoroutine(LoadImageFromUrl(url.url31PH));
         }
     }
 

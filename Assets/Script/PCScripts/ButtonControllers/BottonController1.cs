@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
 public class BottonController1 : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class BottonController1 : MonoBehaviour
     void Awake()
     {
         button = GetComponent<Button>();
-
+        imageURLobj url = new imageURLobj();
         if (button == null)
         {
             Debug.LogError("ToggleButtonColorスクリプトはButtonコンポーネントと一緒に使用する必要があります。");
@@ -48,9 +49,9 @@ public class BottonController1 : MonoBehaviour
         }
 
         // 追加: 画像をURLからロードしてボタンに設定
-        if (!string.IsNullOrEmpty(imageUrl))
+        if (!string.IsNullOrEmpty(url.url1PH))
         {
-            StartCoroutine(LoadImageFromUrl(imageUrl));
+            StartCoroutine(LoadImageFromUrl(url.url1PH));
         }
     }
 

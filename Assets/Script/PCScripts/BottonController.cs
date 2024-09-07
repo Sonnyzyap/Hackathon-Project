@@ -20,6 +20,7 @@ public class BottonController : MonoBehaviour
 
     void Awake()
     {
+        imageURLobj url = new imageURLobj();
         button = GetComponent<Button>();
 
         if (button == null)
@@ -50,9 +51,9 @@ public class BottonController : MonoBehaviour
         }
 
         // 追加: 画像をURLからロードしてボタンに設定
-        if (!string.IsNullOrEmpty(imageUrl))
+        if (!string.IsNullOrEmpty(url.url1PH))
         {
-            StartCoroutine(LoadImageFromUrl(imageUrl));
+            StartCoroutine(LoadImageFromUrl(url.url1PH));
         }
     }
 
