@@ -3,9 +3,16 @@ using UnityEngine.Networking;
 using Newtonsoft.Json;  // Import Newtonsoft.Json namespace
 using System.Collections;
 using UnityEngine.UI;
-public class GoogleDriveImageFetcher : MonoBehaviour
+using Unity.VisualScripting;
+public class imageURLobj
 {
-    private string googleAppScriptUrl = "https://script.google.com/macros/s/AKfycbxnvPbVtKAkQL3u1xVZYmbmvAZpktXY83npDNFKhluc7tJ9w-Kd_1EA3Qk0_QdcFaxF/exec";  // Replace with your deployed Google Apps Script URL
+    public string url1PH, url2PH, url31PH, url32PH, url1DO, url2DO, url31DO, url32DO, url1TEMP, url2TEMP, url31TEMP, url32TEMP, url1SAL, url2SAL, url31SAL, url32SAL;  
+}
+public class GoogleDriveImageFetcher : MonoBehaviour 
+
+{
+    // GASÇÃURLÇÃññîˆÇ…Åu?format=typeBÅvÇïtÇØÇƒÇ≠ÇæÇ≥Ç¢
+    private string googleAppScriptUrl = "https://script.google.com/macros/s/AKfycbxnvPbVtKAkQL3u1xVZYmbmvAZpktXY83npDNFKhluc7tJ9w-Kd_1EA3Qk0_QdcFaxF/exec?format=typeB";  // Replace with your deployed Google Apps Script URL
     public RawImage rawImage;
 
     void Start()
@@ -31,23 +38,24 @@ public class GoogleDriveImageFetcher : MonoBehaviour
             try
             {
                 // Parse the JSON response using Newtonsoft.Json
-                var response = JsonConvert.DeserializeObject<Response>(jsonResponse);
-                string testimageUrl = response.fileUrl;
+                //var response = JsonConvert.DeserializeObject<Response>(jsonResponse);
+                imageURLobj image = JsonUtility.FromJson<imageURLobj>(jsonResponse);
+                string testimageUrl = image.url1PH;
                 Debug.Log("image url: " + testimageUrl);
                 // Debug log the deserialized response to verify the imageUrl
-                if (response != null && !string.IsNullOrEmpty(response.fileUrl))
+                if (image != null && !string.IsNullOrEmpty(image.url1PH))
                 {
-                    Debug.Log("Deserialized Image URL: " + response.fileUrl);
+                    Debug.Log("Deserialized Image URL: " + image.url1PH);
                 }
                 else
                 {
                     Debug.LogWarning("Image URL is null or empty in the response.");
                 }
 
-                string imageUrl = response.fileUrl;
+                //string imageUrl = response.fileUrl;
 
-                // Now use the imageUrl to download and display the image
-                StartCoroutine(DownloadImage(imageUrl));
+                //// Now use the imageUrl to download and display the image
+                StartCoroutine(DownloadImage(image.url1PH));
             }
             catch (System.Exception ex)
             {
@@ -67,14 +75,9 @@ public class GoogleDriveImageFetcher : MonoBehaviour
         }
         else
         {
+        {
             Texture2D texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
             rawImage.texture = texture;  // Set the downloaded texture to the RawImage UI
         }
-    }
-
-    // Class for deserializing the JSON response
-    private class Response
-    {
-        public string fileUrl { get; set; }
     }
 }
