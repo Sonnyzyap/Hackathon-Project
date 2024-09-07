@@ -127,7 +127,7 @@ public class SendGraphData : MonoBehaviour
             yield break;
         }
 
-        var wq = new graphType()
+        var gt = new graphType()
         {
             type = "type3",
             dateClass = string.Format("{0:0000}-{1:00}-{2:00}", yText, mText, dText),
@@ -136,7 +136,7 @@ public class SendGraphData : MonoBehaviour
         };
 
         // クラスをJSON形式に変換
-        string jsonData = JsonUtility.ToJson(wq);
+        string jsonData = JsonUtility.ToJson(gt);
         Debug.Log(jsonData);
 
         // UnityWebRequestを使ってGoogle Apps ScriptにJSONデータをPOST
