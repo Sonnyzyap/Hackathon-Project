@@ -12,12 +12,12 @@ using JetBrains.Annotations;
 
 public class graphType
 {
-    public string type, yearClass, monthClass, dayClass, timeLineClass, gTypeClass; // 毎日測定するデータ
+    public string type, dateClass, timeLineClass, gTypeClass; // 毎日測定するデータ
 }
 
 public class SendGraphData : MonoBehaviour
 {
-    [SerializeField] TMPro.TMP_Text year, month, day, timeLine, graphType;
+    [SerializeField] TMPro.TMP_Text year, month, day, timeLine, graphType; // graphType:ph等の4つのデータか，nh4等の3つのデータか，PLか
     [SerializeField] Button rightButton;
 
     // スプレッドシートの読み取りURL
@@ -29,10 +29,10 @@ public class SendGraphData : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(PostGraphData());
         year.text = System.DateTime.Now.Year.ToString();
         month.text = System.DateTime.Now.Month.ToString();
         day.text = System.DateTime.Now.Day.ToString();
+        StartCoroutine(PostGraphData());
 
         // ボタンクリック時の挙動
         rightButton.onClick.AddListener(() => StartCoroutine(PostGraphData()));
@@ -130,9 +130,7 @@ public class SendGraphData : MonoBehaviour
         var wq = new graphType()
         {
             type = "type3",
-            yearClass = yText,
-            monthClass = mText,
-            dayClass = dText,
+            dateClass = string.Format("{0:0000}-{1:00}-{2:00}", yText, mText, dText),
             timeLineClass = tlText,
             gTypeClass = gtText,
         };
