@@ -14,6 +14,7 @@ using JetBrains.Annotations;
 public class WaterQualityOthers
 {
     public string type; // jsonの種類
+    public string date; // 日付
     public string TANK; // 硝化槽
     public string PH, DO, TEMP, SAL, NH4, NO2, NO3, COMMENT; // 1週間に1回ほど測定するデータ
 }
@@ -27,7 +28,7 @@ public class DataControllerOthers : MonoBehaviour
     // スプレッドシートの読み取りURL
 
     // Google Apps ScriptのWebアプリURL
-    private string gasUrl = "https://script.google.com/macros/s/AKfycbyMkjezMZJP1qEVN36MaSdZrDQOIEVPzsmeXJD83fsILd33SM6wNZbteWpsSKWlXzw_oQ/exec";
+    private string gasUrl = "https://script.google.com/macros/s/AKfycbxCJBleS5bgYSXOE0k-VpCcosI9GMK-_yWXUT7oY1zvKg4lUtGQCJejwbTN_UWMHDkPvQ/exec";
 
     List<string> datas = new List<string>();
 
@@ -68,6 +69,7 @@ public class DataControllerOthers : MonoBehaviour
         var wq = new WaterQualityOthers()
         {
             type = "type2",
+            date = "2024-08-10",
             TANK = tText,
             PH = phText,
             DO = doText,
