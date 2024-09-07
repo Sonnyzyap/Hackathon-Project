@@ -3,14 +3,12 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
-public class BottonController : MonoBehaviour
+public class BottonController3 : MonoBehaviour
 {
     public Color normalColor = Color.white;
     public Color pressedColor = Color.gray;
     public Button resetButton;
-
     public string imageUrl;  // ’Ç‰Á: ‰æ‘œ‚ÌURL‚ğŠi”[‚·‚é•Ï”
 
     private Button button;
