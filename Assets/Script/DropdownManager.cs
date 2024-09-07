@@ -9,44 +9,67 @@ public class DropdownManager : MonoBehaviour
     public TMP_InputField inputField;
     public Button addButton;
 
-    private List<string> dropdownOptions = new List<string>();
+    // Reference to the centralized template manager
+    private CommentTemplateManager templateManager;
 
     void Start()
     {
-        // Initialize the dropdown options with any pre-existing items
-        dropdownOptions.AddRange(dropdown.options.ConvertAll(option => option.text));
+        // Find the centralized template manager in the scene
+        templateManager = FindObjectOfType<CommentTemplateManager>();
 
-        // Add a listener to the button
+        // Populate the dropdown with the latest template list
+        UpdateDropdownOptions();
+
+        // Add a listener to the add button
         addButton.onClick.AddListener(AddOptionToDropdown);
+
+        // Add a listener to update the input field when a template is selected
         dropdown.onValueChanged.AddListener(UpdateInputField);
     }
 
-    void AddOptionToDropdown()
+    // Update the dropdown options with the centralized template list
+    public void UpdateDropdownOptions()
     {
-        string newOption = inputField.text;
-
-        if (!string.IsNullOrEmpty(newOption) && !dropdownOptions.Contains(newOption))
+        if (templateManager != null)
         {
-            // Add the new option to the list
-            dropdownOptions.Add(newOption);
+            // Get the list of templates from the manager
+            List<string> dropdownOptions = templateManager.GetTemplateList();
 
             // Update the dropdown options
             dropdown.ClearOptions();
             dropdown.AddOptions(dropdownOptions);
-
-            // Clear the input field after adding
-            inputField.text = "";
         }
     }
 
+    // Add the input field text as a new template to the centralized list
+    void AddOptionToDropdown()
+    {
+        string newOption = inputField.text;
+
+        if (!string.IsNullOrEmpty(newOption) && templateManager != null)
+        {
+            // Add the new template to the centralized list
+            templateManager.AddTemplate(newOption);
+
+            // Clear the input field after adding
+            inputField.text = "";
+
+            // Update the dropdown with the new template list
+            UpdateDropdownOptions();
+        }
+    }
+
+    // Update the input field with the selected template
     void UpdateInputField(int selectedIndex)
     {
         string originalText = inputField.text;
+        if (dropdown.options.Count > 0)
+        {
+            // Get the selected option's text
+            string selectedOption = dropdown.options[selectedIndex].text;
 
-        // Get the selected option's text
-        string selectedOption = dropdown.options[selectedIndex].text;
-
-        // Update the input field with the selected option's text
-        inputField.text = originalText + selectedOption;
+            // Update the input field by appending the selected option's text
+            inputField.text = originalText + selectedOption;
+        }
     }
 }

@@ -21,9 +21,11 @@ public class WaterQualityOthers
 
 public class DataControllerOthers : MonoBehaviour
 {
-    [SerializeField] TMPro.TMP_Text tankText;
+    [SerializeField] TMP_Text tankText;
     [SerializeField] Button dataButton;
     [SerializeField] TMP_InputField phField, doField, tempField, salField, nh4Field, no2Field, no3Field, commentField;
+    public GameObject successTextPrefab;
+    public Transform successParent;
 
     // スプレッドシートの読み取りURL
 
@@ -99,6 +101,7 @@ public class DataControllerOthers : MonoBehaviour
         if (IsWebRequestSuccessful(req))
         {
             Debug.Log("success");
+            GameObject successInstance = Instantiate(successTextPrefab, successParent);
         }
         else
         {

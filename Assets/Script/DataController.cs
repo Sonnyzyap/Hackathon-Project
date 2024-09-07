@@ -8,6 +8,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using TMPro;
 using JetBrains.Annotations;
+using System;
 
 
 // 水槽の水質データを記録
@@ -21,9 +22,11 @@ public class WaterQualityEveryday
 
 public class DataController : MonoBehaviour
 {
-    [SerializeField] TMPro.TMP_Text tankText;
+    [SerializeField] TMP_Text tankText;
     [SerializeField] Button dataButton;
     [SerializeField] TMP_InputField phField, doField, tempField, salField, commentField;
+    public GameObject successTextPrefab;
+    public Transform successParent;
 
     // Google Apps ScriptのWebアプリURL
     private string gasUrl = "https://script.google.com/macros/s/AKfycbxCJBleS5bgYSXOE0k-VpCcosI9GMK-_yWXUT7oY1zvKg4lUtGQCJejwbTN_UWMHDkPvQ/exec";
@@ -65,7 +68,7 @@ public class DataController : MonoBehaviour
         var wq = new WaterQualityEveryday()
         {
             type = "type1",
-            date = "2024-08-10",
+            date = DateTime.Now.ToString("yyyy-MM-dd"),
             TANK = tText,
             PH = phText,
             DO = doText,
@@ -92,6 +95,7 @@ public class DataController : MonoBehaviour
         if (IsWebRequestSuccessful(req))
         {
             Debug.Log("success");
+            GameObject successInstance = Instantiate(successTextPrefab, successParent);
         }
         else
         {
