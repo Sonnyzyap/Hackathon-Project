@@ -4,10 +4,10 @@ using Newtonsoft.Json;  // Import Newtonsoft.Json namespace
 using System.Collections;
 using UnityEngine.UI;
 using Unity.VisualScripting;
-public class imageURLobj
-{
-    public string url1PH, url2PH, url31PH, url32PH, url1DO, url2DO, url31DO, url32DO, url1TEMP, url2TEMP, url31TEMP, url32TEMP, url1SAL, url2SAL, url31SAL, url32SAL;  
-}
+//public class imageURLobj
+//{
+//    public string url1PH, url2PH, url31PH, url32PH, url1DO, url2DO, url31DO, url32DO, url1TEMP, url2TEMP, url31TEMP, url32TEMP, url1SAL, url2SAL, url31SAL, url32SAL;  
+//}
 public class GoogleDriveImageFetcher : MonoBehaviour 
 
 {
@@ -38,24 +38,24 @@ public class GoogleDriveImageFetcher : MonoBehaviour
             try
             {
                 // Parse the JSON response using Newtonsoft.Json
-                //var response = JsonConvert.DeserializeObject<Response>(jsonResponse);
-                imageURLobj image = JsonUtility.FromJson<imageURLobj>(jsonResponse);
-                string testimageUrl = image.url1PH;
-                Debug.Log("image url: " + testimageUrl);
-                // Debug log the deserialized response to verify the imageUrl
-                if (image != null && !string.IsNullOrEmpty(image.url1PH))
-                {
-                    Debug.Log("Deserialized Image URL: " + image.url1PH);
-                }
-                else
-                {
-                    Debug.LogWarning("Image URL is null or empty in the response.");
-                }
+                ////var response = JsonConvert.DeserializeObject<Response>(jsonResponse);
+                ////imageURLobj image = JsonUtility.FromJson<imageURLobj>(jsonResponse);
+                //string testimageUrl = image.url1PH;
+                //Debug.Log("image url: " + testimageUrl);
+                //// Debug log the deserialized response to verify the imageUrl
+                //if (image != null && !string.IsNullOrEmpty(image.url1PH))
+                //{
+                //    Debug.Log("Deserialized Image URL: " + image.url1PH);
+                //}
+                //else
+                //{
+                //    Debug.LogWarning("Image URL is null or empty in the response.");
+                //}
 
-                //string imageUrl = response.fileUrl;
+                ////string imageUrl = response.fileUrl;
 
-                //// Now use the imageUrl to download and display the image
-                StartCoroutine(DownloadImage(image.url1PH));
+                ////// Now use the imageUrl to download and display the image
+                //StartCoroutine(DownloadImage(image.url1PH));
             }
             catch (System.Exception ex)
             {
