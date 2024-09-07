@@ -6,14 +6,28 @@ public class ButtonSceneSwitcher : MonoBehaviour
 {
     public string sceneName; // 遷移先のシーン名
 
+    //void Start()
+    //{
+    //    // このスクリプトがアタッチされているボタンを取得
+    //    Button button = GetComponent<Button>();
+
+    //    //// ボタンのクリックイベントにメソッドを登録
+    //    button.onClick.AddListener(OnButtonClick);
+    //}
     void Start()
     {
-        // このスクリプトがアタッチされているボタンを取得
         Button button = GetComponent<Button>();
 
-        //// ボタンのクリックイベントにメソッドを登録
-        button.onClick.AddListener(OnButtonClick);
+        if (button != null)
+        {
+            button.onClick.AddListener(OnButtonClick);
+        }
+        else
+        {
+            Debug.LogError("Button component not found on the GameObject.");
+        }
     }
+
 
     void OnButtonClick()
     {
