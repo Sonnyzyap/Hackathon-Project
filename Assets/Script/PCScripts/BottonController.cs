@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Collections;
+using UnityEngine.Networking;
 
 public class ToggleButtonColor : MonoBehaviour
 {
@@ -12,6 +14,10 @@ public class ToggleButtonColor : MonoBehaviour
     private bool isPressed = false;
     private string buttonStateKey;
     private static List<string> allButtonKeys = new List<string>();
+    private static List<string> registeredButtonKeys = new List<string>();
+
+    private const string gasURL = "https://script.google.com/macros/s/AKfycbxCJBleS5bgYSXOE0k-VpCcosI9GMK-_yWXUT7oY1zvKg4lUtGQCJejwbTN_UWMHDkPvQ/exec"; // Google Apps Script のURLをここに入力
+
 
     void Awake()
     {
@@ -93,8 +99,11 @@ public class ToggleButtonColor : MonoBehaviour
             if (PlayerPrefs.GetInt(key) == 1)
             {
                 Debug.Log("Button pressed: " + key.Replace("ButtonPressedState_", ""));
+                registeredButtonKeys.Add(key.Replace("ButtonPressedState_", ""));
             }
         }
+
+        StartCoroutine(SendKeysToGAS());
 
         foreach (string key in allButtonKeys)
         {
@@ -104,5 +113,38 @@ public class ToggleButtonColor : MonoBehaviour
 
         isPressed = false;
         UpdateButtonColor();
+    }
+
+    IEnumerator SendKeysToGAS()
+    {
+        // JSONデータを作成
+        KeyData jsonData = new KeyData();
+        jsonData.keys = registeredButtonKeys;
+        string json = JsonUtility.ToJson(jsonData);
+
+        using (UnityWebRequest request = new UnityWebRequest(gasURL, "POST"))
+        {
+            Debug.Log("Sending JSON: " + json); // JSON内容を確認するためのデバッグ出力
+            byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            request.downloadHandler = new DownloadHandlerBuffer();
+            request.SetRequestHeader("Content-Type", "application/json");
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.Log("Error sending data: " + request.error);
+            }
+            else
+            {
+                Debug.Log("Data sent successfully: " + request.downloadHandler.text);
+            }
+        }
+    }
+
+    [System.Serializable]
+    public class KeyData
+    {
+        public List<string> keys; // リストとして保持するためのフィールド
     }
 }
