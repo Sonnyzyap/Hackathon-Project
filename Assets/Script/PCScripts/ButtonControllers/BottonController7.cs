@@ -19,7 +19,7 @@ public class ToggleButtonColor7 : MonoBehaviour
     void Awake()
     {
         button = GetComponent<Button>();
-        imageURLobj url = new imageURLobj();
+        //imageURLobj url = new imageURLobj();
         if (button == null)
         {
             Debug.LogError("ToggleButtonColorスクリプトはButtonコンポーネントと一緒に使用する必要があります。");
@@ -48,10 +48,10 @@ public class ToggleButtonColor7 : MonoBehaviour
         }
 
         // 追加: 画像をURLからロードしてボタンに設定
-        if (!string.IsNullOrEmpty(url.url2TEMP))
-        {
-            StartCoroutine(LoadImageFromUrl(url.url2TEMP));
-        }
+        //if (!string.IsNullOrEmpty(url.url2TEMP))
+        //{
+        //    StartCoroutine(LoadImageFromUrl(url.url2TEMP));
+        //}
     }
 
     void ToggleColor()

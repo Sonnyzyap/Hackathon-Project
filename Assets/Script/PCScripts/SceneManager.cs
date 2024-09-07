@@ -11,7 +11,7 @@ public class ButtonSceneSwitcher : MonoBehaviour
         // このスクリプトがアタッチされているボタンを取得
         Button button = GetComponent<Button>();
 
-        // ボタンのクリックイベントにメソッドを登録
+        //// ボタンのクリックイベントにメソッドを登録
         button.onClick.AddListener(OnButtonClick);
     }
 

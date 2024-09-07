@@ -19,7 +19,7 @@ public class BottonController2 : MonoBehaviour
     void Awake()
     {
         button = GetComponent<Button>();
-        imageURLobj url = new imageURLobj();
+        //imageURLobj url = new imageURLobj();
 
         if (button == null)
         {
@@ -49,10 +49,10 @@ public class BottonController2 : MonoBehaviour
         }
 
         // 追加: 画像をURLからロードしてボタンに設定
-        if (!string.IsNullOrEmpty(url.url1DO))
-        {
-            StartCoroutine(LoadImageFromUrl(url.url1DO));
-        }
+        //if (!string.IsNullOrEmpty(url.url1DO))
+        //{
+        //    StartCoroutine(LoadImageFromUrl(url.url1DO));
+        //}
     }
 
     void ToggleColor()

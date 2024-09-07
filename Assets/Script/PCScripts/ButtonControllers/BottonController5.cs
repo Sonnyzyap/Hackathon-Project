@@ -19,7 +19,7 @@ public class BottonController5 : MonoBehaviour
     void Awake()
     {
         button = GetComponent<Button>();
-        imageURLobj url = new imageURLobj();
+        //imageURLobj url = new imageURLobj();
         if (button == null)
         {
             Debug.LogError("ToggleButtonColorスクリプトはButtonコンポーネントと一緒に使用する必要があります。");
@@ -47,11 +47,11 @@ public class BottonController5 : MonoBehaviour
             Debug.LogError("リセットボタン 'Decision' が見つかりません。");
         }
 
-        if (!string.IsNullOrEmpty(url.url2PH))
-        // 追加: 画像をURLからロードしてボタンに設定
-        {
-            StartCoroutine(LoadImageFromUrl(url.url2PH));
-        }
+        //if (!string.IsNullOrEmpty(url.url2PH))
+        //// 追加: 画像をURLからロードしてボタンに設定
+        //{
+        //    StartCoroutine(LoadImageFromUrl(url.url2PH));
+        //}
     }
 
     void ToggleColor()

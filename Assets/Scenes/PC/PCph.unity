@@ -3329,6 +3329,7 @@ GameObject:
   - component: {fileID: 967146513}
   - component: {fileID: 967146512}
   - component: {fileID: 967146515}
+  - component: {fileID: 967146516}
   m_Layer: 5
   m_Name: PHetc
   m_TagString: Untagged
@@ -3450,6 +3451,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44f245d9688f0fc4fb980ae6886bfd4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &967146516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967146510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6f89a8ef2016a2488fc09b6741aec45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: PCph
 --- !u!1 &971454589
 GameObject:
   m_ObjectHideFlags: 0
@@ -6571,7 +6585,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   graphImagePrefab: {fileID: 1691703776326369265, guid: c087188f2d1790c45980b00f914b0656, type: 3}
   gridParent: {fileID: 1519270704}
-  rawImage: {fileID: 0}
 --- !u!1 &1967795984
 GameObject:
   m_ObjectHideFlags: 0
