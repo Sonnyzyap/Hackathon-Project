@@ -11,7 +11,7 @@ public class imageURLobj
 public class GoogleDriveImageFetcher : MonoBehaviour 
 
 {
-    // GAS‚ÌURL‚Ì––”ö‚Éu?format=typeBv‚ğ•t‚¯‚Ä‚­‚¾‚³‚¢
+    // GASï¿½ï¿½URLï¿½Ì–ï¿½ï¿½ï¿½ï¿½Éu?format=typeBï¿½vï¿½ï¿½tï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private string googleAppScriptUrl = "https://script.google.com/macros/s/AKfycbxnvPbVtKAkQL3u1xVZYmbmvAZpktXY83npDNFKhluc7tJ9w-Kd_1EA3Qk0_QdcFaxF/exec?format=typeB";  // Replace with your deployed Google Apps Script URL
     public RawImage rawImage;
 
