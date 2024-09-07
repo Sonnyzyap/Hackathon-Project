@@ -122,7 +122,7 @@ public class SendGraphData : MonoBehaviour
         string gtText = graphType.text;
 
         // 値が空の場合は処理を中断
-        if (string.IsNullOrEmpty(dText) || string.IsNullOrEmpty(tlText) || string.IsNullOrEmpty(gtText))
+        if (string.IsNullOrEmpty(dText) || string.IsNullOrEmpty(gtText))
         {
             Debug.Log("empty!");
             yield break;
