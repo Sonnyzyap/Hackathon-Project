@@ -75,7 +75,6 @@ public class GoogleDriveImageFetcher : MonoBehaviour
         }
         else
         {
-        {
             Texture2D texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
             rawImage.texture = texture;  // Set the downloaded texture to the RawImage UI
         }
