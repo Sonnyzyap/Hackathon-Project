@@ -975,8 +975,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u9031"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1a492c42dcda4ab4292cb643ce6f169a, type: 2}
-  m_sharedMaterial: {fileID: -367143553052290960, guid: 1a492c42dcda4ab4292cb643ce6f169a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 36047a8dcafa8e74e90961c4907b67c1, type: 2}
+  m_sharedMaterial: {fileID: -5721859638830033736, guid: 36047a8dcafa8e74e90961c4907b67c1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
