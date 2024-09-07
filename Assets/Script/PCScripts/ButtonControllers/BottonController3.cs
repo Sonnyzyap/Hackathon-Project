@@ -3,14 +3,12 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
-public class BottonController : MonoBehaviour
+public class BottonController3 : MonoBehaviour
 {
     public Color normalColor = Color.white;
     public Color pressedColor = Color.gray;
     public Button resetButton;
-
     public string imageUrl;  // 追加: 画像のURLを格納する変数
 
     private Button button;
@@ -20,9 +18,8 @@ public class BottonController : MonoBehaviour
 
     void Awake()
     {
-        imageURLobj url = new imageURLobj();
         button = GetComponent<Button>();
-
+        imageURLobj url = new imageURLobj();
         if (button == null)
         {
             Debug.LogError("ToggleButtonColorスクリプトはButtonコンポーネントと一緒に使用する必要があります。");
@@ -51,9 +48,9 @@ public class BottonController : MonoBehaviour
         }
 
         // 追加: 画像をURLからロードしてボタンに設定
-        if (!string.IsNullOrEmpty(url.url1PH))
+        if (!string.IsNullOrEmpty(url.url1TEMP))
         {
-            StartCoroutine(LoadImageFromUrl(url.url1PH));
+            StartCoroutine(LoadImageFromUrl(url.url1TEMP));
         }
     }
 

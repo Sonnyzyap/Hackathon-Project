@@ -1,31 +1,48 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections.Generic;
 using System.Collections;
 
-public class CSVDataDisplay : MonoBehaviour
+public class CommentController : MonoBehaviour
 {
-    public Canvas canvas;  // Canvas‚ğInspector‚Åİ’è
-    public string url = "https://docs.google.com/spreadsheets/d/1xi7ljCNvzy9lssvxFl43BmZy3IQ42Vd0UMBS1UkNECs/edit?usp=sharing";  // CSVƒtƒ@ƒCƒ‹‚ÌURL
+    public Canvas canvas;  // Canvasã¯Inspectorã§è¨­å®š
+    private string url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3hwpVfYo2aEJqYwtrEWdx62-9EOfD9WN2cetG8vYq7AyHcgW1Y91ldORvxBZ7KehbwLbEkou4zlju/pub?gid=0&single=true&output=csv";  // CSVãƒ•ã‚¡ã‚¤ãƒ«ã®URL
+
+    public float cellWidth = 200f;  // ã‚»ãƒ«ã®å¹…ï¼ˆInspectorã‹ã‚‰è¨­å®šå¯èƒ½ï¼‰
+    public float cellHeight = 50f;  // ã‚»ãƒ«ã®é«˜ã•ï¼ˆInspectorã‹ã‚‰è¨­å®šå¯èƒ½ï¼‰
+    public float horizontalSpacing = 10f;  // æ¨ªã®ã‚»ãƒ«é–“éš”ï¼ˆInspectorã‹ã‚‰è¨­å®šå¯èƒ½ï¼‰
+    public float verticalSpacing = 20f;  // ç¸¦ã®ã‚»ãƒ«é–“éš”ï¼ˆInspectorã‹ã‚‰è¨­å®šå¯èƒ½ï¼‰
+    public float rightCellWidth = 1000f;  // å³ç«¯ã®ã‚»ãƒ«ã®å¹…ï¼ˆ5å€ã«æ‹¡å¤§ï¼‰
+
+    public float startX = 0f;  // ã‚»ãƒ«ã®Xåº§æ¨™ï¼ˆInspectorã‹ã‚‰è¨­å®šå¯èƒ½ï¼‰
+    public float startY = 0f;  // ã‚»ãƒ«ã®Yåº§æ¨™ï¼ˆInspectorã‹ã‚‰è¨­å®šå¯èƒ½ï¼‰
 
     void Start()
     {
         StartCoroutine(DownloadCSV(url));
     }
 
-    // CSVƒtƒ@ƒCƒ‹‚ğURL‚©‚çƒ_ƒEƒ“ƒ[ƒh‚·‚éƒRƒ‹[ƒ`ƒ“
     IEnumerator DownloadCSV(string url)
     {
         using (UnityWebRequest www = UnityWebRequest.Get(url))
         {
+            www.redirectLimit = 10;
             yield return www.SendWebRequest();
 
             if (www.result == UnityWebRequest.Result.Success)
             {
                 string csvData = www.downloadHandler.text;
-                List<List<string>> data = ParseCSV(csvData);
-                CreateUI(data);
+                Debug.Log("CSV Data: " + csvData); // Log the data to verify
+                if (csvData.StartsWith("<!DOCTYPE html>")) // Check for HTML content
+                {
+                    Debug.LogError("Received HTML instead of CSV. Please check the URL.");
+                }
+                else
+                {
+                    List<List<string>> data = ParseCSV(csvData);
+                    CreateUI(data);
+                }
             }
             else
             {
@@ -34,7 +51,6 @@ public class CSVDataDisplay : MonoBehaviour
         }
     }
 
-    // CSVƒf[ƒ^‚ğ•¶š—ñ‚©‚çƒp[ƒX‚·‚éƒƒ\ƒbƒh
     List<List<string>> ParseCSV(string csvData)
     {
         List<List<string>> result = new List<List<string>>();
@@ -52,43 +68,57 @@ public class CSVDataDisplay : MonoBehaviour
         return result;
     }
 
-    // UI‚ğì¬‚·‚éƒƒ\ƒbƒh
     void CreateUI(List<List<string>> data)
     {
-        float cellWidth = 200f;  // ƒZƒ‹‚Ì•
-        float cellHeight = 50f;  // ƒZƒ‹‚Ì‚‚³
-
         for (int row = 0; row < data.Count; row++)
         {
             for (int col = 0; col < data[row].Count; col++)
             {
-                // ”wŒi—p‚ÌImageƒIƒuƒWƒFƒNƒg‚ğì¬
+                // èƒŒæ™¯ç”¨ã®Imageã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ
                 GameObject background = new GameObject("CellBackground");
                 background.transform.SetParent(canvas.transform);
                 Image bgImage = background.AddComponent<Image>();
-                bgImage.color = Color.white;  // ”wŒi‚ğ”’‚Éİ’è
+                bgImage.color = Color.white;  // èƒŒæ™¯ã‚’ç™½ã«è¨­å®š
 
-                // ƒeƒLƒXƒg—p‚ÌTextƒIƒuƒWƒFƒNƒg‚ğì¬
+                // ãƒ†ã‚­ã‚¹ãƒˆç”¨ã®Textã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ
                 GameObject textObject = new GameObject("CellText");
                 textObject.transform.SetParent(background.transform);
                 Text text = textObject.AddComponent<Text>();
                 text.text = data[row][col];
                 text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
                 text.fontSize = 24;
-                text.alignment = TextAnchor.MiddleCenter;
+
+                // ä¸€ç•ªå³ã®ã‚»ãƒ«ã®ãƒ†ã‚­ã‚¹ãƒˆã®é…ç½®ã‚’è¨­å®š
+                if (col == data[row].Count - 1)
+                {
+                    text.alignment = TextAnchor.MiddleLeft;  // ãƒ†ã‚­ã‚¹ãƒˆã‚’å·¦æƒãˆ
+                }
+                else
+                {
+                    text.alignment = TextAnchor.MiddleCenter;  // ä¸­å¤®æƒãˆï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆï¼‰
+                }
                 text.color = Color.black;
 
-                // RectTransform‚ğİ’è‚µ‚ÄƒTƒCƒY‚ÆˆÊ’u‚ğ’²®
+                // RectTransformã‚’è¨­å®šã—ã¦ã‚µã‚¤ã‚ºã¨ä½ç½®ã‚’èª¿æ•´
                 RectTransform bgRect = background.GetComponent<RectTransform>();
                 RectTransform textRect = textObject.GetComponent<RectTransform>();
 
-                float xPos = col * (cellWidth + 10);  // ƒZƒ‹‚Ì•‚ÆŠÔŠu‚ğl—¶
-                float yPos = -row * (cellHeight + 10);  // ƒZƒ‹‚Ì‚‚³‚ÆŠÔŠu‚ğl—¶
+                float xPos = startX + col * (cellWidth + horizontalSpacing);  // æ¨ªã®ã‚»ãƒ«ã®å¹…ã¨é–“éš”ã®è¨ˆç®—
+                float yPos = startY - row * (cellHeight + verticalSpacing);  // ç¸¦ã®ã‚»ãƒ«ã®é«˜ã•ã¨é–“éš”ã®è¨ˆç®—
 
-                bgRect.sizeDelta = new Vector2(cellWidth, cellHeight);
+                // ä¸€ç•ªå³ã®ã‚»ãƒ«ã®æ¨ªå¹…ã‚’å¤‰æ›´
+                if (col == data[row].Count - 1)
+                {
+                    bgRect.sizeDelta = new Vector2(rightCellWidth, cellHeight);
+                    textRect.sizeDelta = new Vector2(rightCellWidth - 10, cellHeight - 10);  // ãƒ†ã‚­ã‚¹ãƒˆã®ä½™ç™½ã‚’è¨­å®š
+                }
+                else
+                {
+                    bgRect.sizeDelta = new Vector2(cellWidth, cellHeight);
+                    textRect.sizeDelta = new Vector2(cellWidth - 10, cellHeight - 10);  // ãƒ†ã‚­ã‚¹ãƒˆã®ä½™ç™½ã‚’è¨­å®š
+                }
+
                 bgRect.anchoredPosition = new Vector2(xPos, yPos);
-
-                textRect.sizeDelta = new Vector2(cellWidth - 10, cellHeight - 10);  // —]”’‚ğl—¶
                 textRect.anchoredPosition = Vector2.zero;
             }
         }
