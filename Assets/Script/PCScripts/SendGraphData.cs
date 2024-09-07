@@ -17,8 +17,9 @@ public class graphType
 
 public class SendGraphData : MonoBehaviour
 {
-    [SerializeField] TMPro.TMP_Text year, month, day, timeLine, graphType; // graphType:ph等の4つのデータか，nh4等の3つのデータか，PLか
+    [SerializeField] TMPro.TMP_Text year, month, day, graphType; // graphType:ph等の4つのデータか，nh4等の3つのデータか，PLか
     [SerializeField] Button rightButton;
+    public string timeLine;
 
     // スプレッドシートの読み取りURL
 
@@ -32,6 +33,7 @@ public class SendGraphData : MonoBehaviour
         year.text = System.DateTime.Now.Year.ToString();
         month.text = System.DateTime.Now.Month.ToString();
         day.text = System.DateTime.Now.Day.ToString();
+        timeLine = "month";
         StartCoroutine(PostGraphData());
 
         // ボタンクリック時の挙動
@@ -117,7 +119,6 @@ public class SendGraphData : MonoBehaviour
         string yText = year.text;
         string mText = month.text;
         string dText = day.text;
-        string tlText = timeLine.text;
         string gtText = graphType.text;
 
         // 値が空の場合は処理を中断
@@ -131,7 +132,7 @@ public class SendGraphData : MonoBehaviour
         {
             type = "type3",
             dateClass = string.Format("{0:0000}-{1:00}-{2:00}", yText, mText, dText),
-            timeLineClass = tlText,
+            timeLineClass = timeLine,
             gTypeClass = gtText,
         };
 
@@ -170,7 +171,7 @@ public class SendGraphData : MonoBehaviour
         year.text = "";
         month.text = "";
         day.text = "";
-        timeLine.text = "";
+        timeLine = "";
         graphType.text = "";
     }
 }

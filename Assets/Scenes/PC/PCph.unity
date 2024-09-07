@@ -8234,6 +8234,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1774585171}
     m_Modifications:
+    - target: {fileID: 1396448148654509237, guid: fa593c37dab7beb488f2a273387c2fb8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396448148654509237, guid: fa593c37dab7beb488f2a273387c2fb8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396448148654509237, guid: fa593c37dab7beb488f2a273387c2fb8, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2502117189251963687, guid: fa593c37dab7beb488f2a273387c2fb8, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -8241,6 +8253,10 @@ PrefabInstance:
     - target: {fileID: 3194573439595601777, guid: fa593c37dab7beb488f2a273387c2fb8, type: 3}
       propertyPath: m_Name
       value: TimeAxis
+      objectReference: {fileID: 0}
+    - target: {fileID: 3815787445311577827, guid: fa593c37dab7beb488f2a273387c2fb8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3896151533711931432, guid: fa593c37dab7beb488f2a273387c2fb8, type: 3}
       propertyPath: m_Pivot.x
@@ -8334,6 +8350,14 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8282967061718949681, guid: fa593c37dab7beb488f2a273387c2fb8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8282967061718949681, guid: fa593c37dab7beb488f2a273387c2fb8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8371,6 +8395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropdown: {fileID: 8790341386892010246}
+  selectedText: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

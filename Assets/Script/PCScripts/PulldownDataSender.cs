@@ -6,6 +6,8 @@ public class PulldownDataSender : MonoBehaviour
 {
     // Dropdownコンポーネントをインスペクタから割り当てる
     public TMP_Dropdown dropdown;
+    public string selectedText;
+    public SendGraphData sdg;
 
     void Start()
     {
@@ -14,6 +16,7 @@ public class PulldownDataSender : MonoBehaviour
         {
             // Dropdownの選択変更イベントにメソッドを登録
             dropdown.onValueChanged.AddListener(OnDropdownValueChanged);
+            sdg = new SendGraphData();
         }
         else
         {
@@ -26,22 +29,22 @@ public class PulldownDataSender : MonoBehaviour
         // 選択された項目のテキストを取得
         if (dropdown != null && dropdown.options.Count > index)
         {
-            string selectedText = dropdown.options[index].text;
+            selectedText = dropdown.options[index].text;
             if (selectedText == "週")
             {
-                selectedText = "week";
+                sdg.timeLine = "week";
             }
             else if (selectedText == "月")
             {
-                selectedText = "month";
+                sdg.timeLine = "month";
             }
             else if (selectedText == "年")
             {
-                selectedText = "year";
+                sdg.timeLine = "year";
             }
             else if (selectedText == "年ごと")
             {
-                selectedText = "byYear";
+                sdg.timeLine = "byYear";
             }
             else if (selectedText == "1系")
             {
