@@ -5,7 +5,7 @@ using System.Collections;
 using UnityEngine.UI;
 public class GoogleDriveImageFetcher : MonoBehaviour
 {
-    private string googleAppScriptUrl = "https://script.google.com/macros/s/AKfycbxnvPbVtKAkQL3u1xVZYmbmvAZpktXY83npDNFKhluc7tJ9w-Kd_1EA3Qk0_QdcFaxF/exec";  // Replace with your deployed Google Apps Script URL
+    private string googleAppScriptUrl = "https://script.google.com/macros/s/AKfycbxqTK0r2481dAvTC5i9QoZzF3smjo5KO9vPamL0RStC4PNU6M_iv5jeEVoViRhZIy0C/exec";  // Replace with your deployed Google Apps Script URL
     public RawImage rawImage;
 
     void Start()
