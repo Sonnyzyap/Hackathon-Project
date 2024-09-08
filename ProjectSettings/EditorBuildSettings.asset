@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PC/PCPL.unity
     guid: d9798b5513c111b428760ba3a62b8b64
+  - enabled: 1
+    path: Assets/Scenes/PC/PCComments.unity
+    guid: 77e7f7484ac454f4bbcc549c6e2a8476
   m_configObjects: {}
