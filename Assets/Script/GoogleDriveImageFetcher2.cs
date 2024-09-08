@@ -11,7 +11,7 @@ public class GoogleDriveImageFetcher2 : MonoBehaviour
     {
         public List<string> fileUrls; // To hold the array of URLs
     }
-    private string googleScriptUrl = "https://script.google.com/macros/s/AKfycbyEkdyvMJr2BxseLLMAabBOIoJdppT3Md0aMYWD0NdpTxJ0_khiED7aSvhRFWzsyclH/exec";
+    private string googleScriptUrl = "https://script.google.com/macros/s/AKfycbwTv_tjVnXZBKUiy7F-wqKvmvwSEiDiX_u9AjxaLp7KqyKQR8kqGxPJ2Ul4FaLw2vM/exec";
     public GameObject graphImagePrefab;
     public Transform gridParent;
 

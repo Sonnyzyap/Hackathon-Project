@@ -7,6 +7,7 @@ public class ToggleButtonColor : MonoBehaviour
     public Color normalColor = Color.white;
     public Color pressedColor = Color.gray;
     public Button resetButton;
+    //findobjectwithtag<"resetbutton">
 
     private Button button;
     private bool isPressed = false;
