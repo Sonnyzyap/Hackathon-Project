@@ -6,6 +6,7 @@ using System.Collections;
 
 public class CommentController : MonoBehaviour
 {
+
     public Canvas canvas;  // CanvasはInspectorで設定
     private string url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3hwpVfYo2aEJqYwtrEWdx62-9EOfD9WN2cetG8vYq7AyHcgW1Y91ldORvxBZ7KehbwLbEkou4zlju/pub?gid=0&single=true&output=csv";  // CSVファイルのURL
 
